@@ -137,7 +137,13 @@ sort_by_mtime <- function(files, by_mtime, director) {
 }
 
 exact_find <- function(director, pattern, base) {
-  if (nzchar(base)) pattern <- file.path(base, pattern)
+  if (nzchar(base)) {
+    if (nzchar(pattern)) {
+      pattern <- file.path(base, pattern)
+    } else {
+      pattern <- base
+    }
+  }
 
   ## A resource "foo" can correspond to either "foo.r", "foo.R",
   ## "foo/foo.r", or "foo/foo.R".

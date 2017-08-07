@@ -122,6 +122,8 @@ test_that("it only find a single idempotent resource when the base is the resour
   within_file_structure(list(uno = list('uno.R', 'bar.R')), { d <- director(tempdir)
     expect_identical('uno', d$find(base = "uno", method = "partial"),
       info = "Partial matching should find uno as an idempotent resource.")
+    expect_identical('uno', d$find(base = "uno", method = "exact"),
+      info = "Exact matching should find uno as an idempotent resource.")
   })
 })
 
